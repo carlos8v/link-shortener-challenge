@@ -1,4 +1,5 @@
 import Fastify from 'fastify'
+import cors from '@fastify/cors'
 
 const links = [
   {
@@ -10,6 +11,10 @@ const links = [
 
 async function main() {
   const fastify = Fastify()
+  fastify.register(cors, {
+    origin: '*',
+    methods: ['OPTIONS', 'GET', 'POST', 'DELETE']
+  })
 
   fastify.get('/links', (_req, reply) => reply.send(links))
 

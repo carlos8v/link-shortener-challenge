@@ -9,6 +9,7 @@
   "author": "Carlos Souza <carlos.pessoal@hotmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@fastify/cors": "^8.1.1",
     "fastify": "^4.9.2"
   }
 }
