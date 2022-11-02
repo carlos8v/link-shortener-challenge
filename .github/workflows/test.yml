@@ -26,4 +26,5 @@ jobs:
         id: evaluator
         uses: carlos8v/vitest-evaluator-action@v2.4
         with:
+          test-coverage: 100
           token: ${{ secrets.GITHUB_TOKEN }}
