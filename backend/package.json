@@ -1,0 +1,13 @@
+{
+  "name": "link-shortener-challenge-api",
+  "description": "Repositório da api do desafio da aplicação link-shortener-challenge",
+  "version": "0.1.0",
+  "scripts": {
+    "api": "json-server db.json --p 3333 --host 0.0.0.0"
+  },
+  "author": "Carlos Souza <carlos.pessoal@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "json-server": "^0.17.0"
+  }
+}
