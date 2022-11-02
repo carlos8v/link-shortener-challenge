@@ -13,15 +13,6 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Backend build
-        run: docker build ./backend -t link-shortener-challenge/api
-
-      - name: Backend setup
-        run: docker run -d \
-          -p 3333:3333 \
-          --name link-shortener-challenge-api \
-          --rm link-shortener-challenge/api
-
       - name: Evaluator step
         id: evaluator
         uses: carlos8v/vitest-evaluator-action@v2.4

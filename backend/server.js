@@ -1,8 +1,7 @@
 import Fastify from 'fastify'
 import cors from '@fastify/cors'
 
-let lastId = 1
-let links = [
+let defaultShortLinks = [
   {
     id: 1,
     slug: "link-shortener-challenge",
@@ -10,14 +9,17 @@ let links = [
   }
 ]
 
-async function main() {
-  const fastify = Fastify()
+export function bootstrapServer(initialLinks = defaultShortLinks) {
+  let shortLinks = [...initialLinks]
+  let lastId = shortLinks.length
+
+  const fastify = Fastify({ logger: true })
   fastify.register(cors, {
     origin: '*',
     methods: ['OPTIONS', 'GET', 'POST', 'DELETE']
   })
 
-  fastify.get('/links', (_req, reply) => reply.send(links))
+  fastify.get('/links', (_req, reply) => reply.send(shortLinks))
 
   fastify.get(
     '/links/:slug',
@@ -34,7 +36,7 @@ async function main() {
     },
     (req, reply) => {
       const { slug } = req.params
-      const shortenedLink = links.find((link) => link.slug === slug)
+      const shortenedLink = shortLinks.find((link) => link.slug === slug)
       if (!shortenedLink) {
         return reply.status(400).send({ message: 'Encurtador não encontrado' })
       }
@@ -58,12 +60,12 @@ async function main() {
     },
     (req, reply) => {
       const { slug } = req.params
-      const shortenedLink = links.find((link) => link.slug === slug)
+      const shortenedLink = shortLinks.find((link) => link.slug === slug)
       if (!shortenedLink) {
         return reply.status(400).send({ message: 'Encurtador não encontrado' })
       }
 
-      links = links.filter((link) => link.id !== shortenedLink.id)
+      shortLinks = shortLinks.filter((link) => link.id !== shortenedLink.id)
 
       return reply.status(204).send()
     }
@@ -86,7 +88,7 @@ async function main() {
     (req, reply) => {
       const { slug, url } = req.body
 
-      const alreadyExists = links.find((link) => link.slug === slug)
+      const alreadyExists = shortLinks.find((link) => link.slug === slug)
       if (alreadyExists) {
         return reply.status(400).send({ message: 'Encurtador com mesmo slug já cadastrado' })
       }
@@ -97,13 +99,11 @@ async function main() {
         url
       }
 
-      links.push(shortenedLink)
+      shortLinks.push(shortenedLink)
 
       return reply.status(201).send(shortenedLink)
     }
   )
 
-  await fastify.listen({ port: 3333, host: '0.0.0.0' })
+  return fastify
 }
-
-main()
