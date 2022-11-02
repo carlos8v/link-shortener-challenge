@@ -25,7 +25,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
     - [5 - Criar página de visualização de links acessados](#5---criar-página-de-visualização-de-links-acessados)
 - [Avisos Finais](#avisos-finais)
 
-# Habilidades 
+# Habilidades
 
 Nesse projeto, você vai construir um frontend usando `react` e será capaz de:
  - Utilizar roteamento de páginas com `react-router-dom`;
@@ -175,31 +175,41 @@ npm test -- tests/req01-createShortLink.spec.jsx
 
 ### 1 - Criar página inicial com criação de links
 
-Essa página deve conseguir criar um encurtador de link válido.
+Nessa página deve ser possível criar um encurtador de link válido.
 
 #### Os seguintes pontos serão avaliados:
 
 - A página deve ter uma tag `input` com os atributos:
-  - `data-testid=create-shortener-url`;
+  - `data-testid=create-shortlink-url`;
   - `required`;
   - `type=url`.
 
 - A página deve ter uma tag `input` com os atributos:
-  - `data-testid=create-shortener-slug`;
+  - `data-testid=create-shortlink-slug`;
   - `required`;
   - `type=text`.
 
 - A página deve ter uma tag `button` com os atributos:
-  - `data-testid=create-shortener-button`;
+  - `data-testid=create-shortlink-button`;
   - `type=submit`.
 
 - O botão de criar deve estar desabilitado enquanto a url e o slug não forem preenchidos;
 
-- Caso a url encurtada já exista, deverá aparecer na tela a mensagem: `Encurtador com mesmo slug já cadastrado!` dentro de uma tag `span` com o atributo `data-testid=create-shortener-response`.
+- Caso a url encurtada já exista, deverá aparecer na tela uma tag `span` contendo:
+  - O texto: `Encurtador com mesmo slug já cadastrado!`;
+  - O atributo `data-testid=create-shortlink-response`.
 
-- Caso a criação da url encurtada não retornar erro, deverá aparecer na tela a mensagem: `Encurtador criado com sucesso!` dentro de uma tag `span` com o atributo `data-testid=create-shortener-response`.
+- Caso a criação da url encurtada não retornar erro, deverá aparecer na tela uma tag `span` contendo:
+  - O texto: `Encurtador criado com sucesso!`;
+  - O atributo `data-testid=create-shortlink-response`.
 
 ### 2 - Criar página de redirecionamento de links
+
+Nessa página deve ser possível visualizar todos os encurtadores de link criados.
+
+#### Os seguintes pontos serão avaliados:
+
+- A página deve ter uma tag `table` com o atributo `data-testid=shortlink-list`
 
 ### 3 - Criar página de listagem de links encurtados
 

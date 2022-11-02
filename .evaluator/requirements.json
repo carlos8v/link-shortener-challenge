@@ -1,0 +1,11 @@
+{
+  "requirements": [
+    { "description": "1 - Criar página inicial com criação de links" },
+    { "description": "2 - Criar página de redirecionamento de links" },
+    { "description": "3 - Criar página de listagem de links encurtados" },
+    { "description": "4 - Criar funcionalidade de exclusão de links" },
+    { "description": "5 - Criar página de visualização de links acessados",
+      "bonus": true
+     }
+  ]
+}

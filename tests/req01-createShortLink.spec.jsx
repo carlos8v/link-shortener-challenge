@@ -23,11 +23,11 @@ describe('1 - Criar página inicial com criação de links', () => {
   it('Deve ter as tags com os atributos corretos em tela', async () => {
     renderWithRouter(<App />)
 
-    expect(screen.getByTestId('create-shortener-form')).toBeInTheDocument()
+    expect(screen.getByTestId('create-shortlink-form')).toBeInTheDocument()
 
-    const slugInput = screen.getByTestId('create-shortener-slug')
-    const urlInput = screen.getByTestId('create-shortener-url')
-    const button = screen.getByTestId('create-shortener-button')
+    const slugInput = screen.getByTestId('create-shortlink-slug')
+    const urlInput = screen.getByTestId('create-shortlink-url')
+    const button = screen.getByTestId('create-shortlink-button')
 
     expect(slugInput).toBeInTheDocument()
     expect(slugInput.tagName).toBe('INPUT')
@@ -55,16 +55,16 @@ describe('1 - Criar página inicial com criação de links', () => {
   it('Deve ser possível criar um encurtador corretamente', async () => {
     renderWithRouter(<App />)
 
-    const slugInput = screen.getByTestId('create-shortener-slug')
-    const urlInput = screen.getByTestId('create-shortener-url')
-    const button = screen.getByTestId('create-shortener-button')
+    const slugInput = screen.getByTestId('create-shortlink-slug')
+    const urlInput = screen.getByTestId('create-shortlink-url')
+    const button = screen.getByTestId('create-shortlink-button')
 
     await userEvent.type(slugInput, 'google')
     await userEvent.type(urlInput, 'https://google.com')
 
     await userEvent.click(button)
 
-    const fetchResponse = await screen.findByTestId('create-shortener-response')
+    const fetchResponse = await screen.findByTestId('create-shortlink-response')
     expect(fetchResponse).toBeInTheDocument()
     expect(fetchResponse.innerHTML).toBe('Encurtador criado com sucesso!')
   })
@@ -72,16 +72,16 @@ describe('1 - Criar página inicial com criação de links', () => {
   it('Não deve ser possível criar um encurtador com o slug duplicado', async () => {
     renderWithRouter(<App />)
 
-    const slugInput = screen.getByTestId('create-shortener-slug')
-    const urlInput = screen.getByTestId('create-shortener-url')
-    const button = screen.getByTestId('create-shortener-button')
+    const slugInput = screen.getByTestId('create-shortlink-slug')
+    const urlInput = screen.getByTestId('create-shortlink-url')
+    const button = screen.getByTestId('create-shortlink-button')
 
     await userEvent.type(slugInput, 'google')
     await userEvent.type(urlInput, 'https://google.com')
 
     await userEvent.click(button)
 
-    const fetchResponse = await screen.findByTestId('create-shortener-response')
+    const fetchResponse = await screen.findByTestId('create-shortlink-response')
     expect(fetchResponse).toBeInTheDocument()
     expect(fetchResponse.innerHTML).toBe('Encurtador com mesmo slug já cadastrado!')
   })
