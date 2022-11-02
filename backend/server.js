@@ -1,7 +1,8 @@
 import Fastify from 'fastify'
 import cors from '@fastify/cors'
 
-const links = [
+let lastId = 1
+let links = [
   {
     id: 1,
     slug: "link-shortener-challenge",
@@ -42,6 +43,32 @@ async function main() {
     }
   )
 
+  fastify.delete(
+    '/links/:slug',
+    {
+      schema: {
+        params: {
+          type: 'object',
+          required: ['slug'],
+          properties: {
+            slug: { type: 'string' }
+          }
+        }
+      }
+    },
+    (req, reply) => {
+      const { slug } = req.params
+      const shortenedLink = links.find((link) => link.slug === slug)
+      if (!shortenedLink) {
+        return reply.status(400).send({ message: 'Encurtador não encontrado' })
+      }
+
+      links = links.filter((link) => link.id !== shortenedLink.id)
+
+      return reply.status(204).send()
+    }
+  )
+
   fastify.post(
     '/links',
     {
@@ -59,20 +86,20 @@ async function main() {
     (req, reply) => {
       const { slug, url } = req.body
 
-      const alreadyExists = links.find((link) => link.url === url)
+      const alreadyExists = links.find((link) => link.slug === slug)
       if (alreadyExists) {
-        return reply.status(400).send({ message: 'URL já cadastrada' })
+        return reply.status(400).send({ message: 'Encurtador com mesmo slug já cadastrado' })
       }
 
       const shortenedLink = {
-        id: links.length + 1,
+        id: ++lastId,
         slug,
         url
       }
 
       links.push(shortenedLink)
 
-      return reply.send(shortenedLink)
+      return reply.status(201).send(shortenedLink)
     }
   )
 
