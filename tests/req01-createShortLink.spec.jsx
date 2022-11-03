@@ -1,19 +1,35 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { bootstrapServer } from '../backend/server'
 
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import { renderWithRouter } from './renderWithRouter'
+import { getRandomPort } from './utils'
 
 import App from '../src/App'
 
 describe('1 - Criar página inicial com criação de links', () => {
   let server
 
+  const originalEnv = process.env
+  const port = getRandomPort()
+
   beforeAll(async () => {
     server = bootstrapServer()
-    server.listen({ port: 5000 })
+    await server.listen({ port })
+  })
+
+  beforeEach(() => {
+    vi.resetModules()
+    process.env = {
+      ...originalEnv,
+      VITE_API_URL: `http://localhost:${port}`
+    }
+  })
+
+  afterEach(() => {
+    process.env = originalEnv
   })
 
   afterAll(async () => {

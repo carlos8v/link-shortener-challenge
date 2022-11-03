@@ -13,7 +13,8 @@ export function bootstrapServer(initialLinks = defaultShortLinks) {
   let shortLinks = [...initialLinks]
   let lastId = shortLinks.length
 
-  const fastify = Fastify({ logger: true })
+  const fastify = Fastify({ logger: process.env.NODE_ENV !== 'test' })
+
   fastify.register(cors, {
     origin: '*',
     methods: ['OPTIONS', 'GET', 'POST', 'DELETE']
