@@ -167,7 +167,7 @@ Nesse repositório estaremos usando o [vitest](https://vitest.dev/) para executa
 npm test -- tests/req01-createShortLink.spec.jsx
 ```
 
-:warning: Você pode utilizar `npm test` para rodas todos os testes, mas essa ação pode demorar demais durante o desenvolvimento, deixe que o avaliador determine como está o progresso de seu projeto
+:warning: Você pode utilizar `npm test` para rodar todos os testes, mas essa ação pode demorar durante o desenvolvimento, deixe que o avaliador determine como está o progresso de seu projeto
 
 ---
 
@@ -230,7 +230,7 @@ A página deve ser servida no caminho `/list`
     - O texto contendo a slug
   - Uma tag `td` contendo:
     - O atributo `data-testid=shorlink-${id}-url`
-    - O texto contendo a slug
+    - O texto contendo a url
 
 ### 3 - Criar página de redirecionamento de links
 
