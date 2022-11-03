@@ -18,9 +18,9 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
     - [Execução de testes unitários](#execução-de-testes-unitários)
   - [Lista de Requisitos](#lista-de-requisitos)
     - [1 - Criar página inicial com criação de links](#1---criar-página-inicial-com-criação-de-links)
-    - [2 - Criar página de redirecionamento de links](#2---criar-página-de-redirecionamento-de-links)
-    - [3 - Criar página de listagem de links encurtados](#3---criar-página-de-listagem-de-links-encurtados)
-    - [4 - Criar funcionalidade de exclusão de links](#4---criar-funcionalidade-de-exclusão-de-links)
+    - [2 - Criar página de listagem de links encurtados](#2---criar-página-de-listagem-de-links-encurtados)
+    - [3 - Criar página de redirecionamento de links](#3---criar-página-de-redirecionamento-de-links)
+    - [4 - Criar funcionalidade de exclusão](#4---criar-funcionalidade-de-exclusão-de-links)
     - [Requisitos Bônus](#requisitos-bônus)
     - [5 - Criar página de visualização de links acessados](#5---criar-página-de-visualização-de-links-acessados)
 - [Avisos Finais](#avisos-finais)
@@ -177,6 +177,8 @@ npm test -- tests/req01-createShortLink.spec.jsx
 
 Nessa página deve ser possível criar um encurtador de link válido.
 
+A página deve ser servida na raiz da aplicação, no caminho `/`.
+
 #### Os seguintes pontos serão avaliados:
 
 - A página deve ter uma tag `input` com os atributos:
@@ -203,15 +205,34 @@ Nessa página deve ser possível criar um encurtador de link válido.
   - O texto: `Encurtador criado com sucesso!`;
   - O atributo `data-testid=create-shortlink-response`.
 
-### 2 - Criar página de redirecionamento de links
+### 2 - Criar página de listagem de links encurtados
 
 Nessa página deve ser possível visualizar todos os encurtadores de link criados.
 
+A página deve ser servida no caminho `/list`
+
 #### Os seguintes pontos serão avaliados:
 
-- A página deve ter uma tag `table` com o atributo `data-testid=shortlink-list`
+- Na página inicial deve haver uma tag `a` com o link para a página `/list`, contendo:
+  - A mensagem: `Listagem`
+  - O atributo `data-testid=list-shortlinks-page`
 
-### 3 - Criar página de listagem de links encurtados
+- Na página de listagem deve haver uma tag `a` com o link para a página `/`, contendo:
+  - A mensagem: `Criar novo`
+  - O atributo `data-testid=create-shortlinks-page`
+
+- A página deve ter uma tag `table` com o atributo `data-testid=shortlink-list`;
+
+- Para cada link deverá ter uma tag `tr` contendo:
+  - O atributo `data-testid=shortlink-${id}`;
+  - Uma tag `td` contendo:
+    - O atributo `data-testid=shorlink-${id}-slug`
+    - O texto contendo a slug
+  - Uma tag `td` contendo:
+    - O atributo `data-testid=shorlink-${id}-url`
+    - O texto contendo a slug
+
+### 3 - Criar página de redirecionamento de links
 
 ### 4 - Criar funcionalidade de exclusão de links
 
