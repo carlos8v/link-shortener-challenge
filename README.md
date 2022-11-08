@@ -131,7 +131,7 @@ Em cada requisito você encontrará em detalhes o que seu projeto deverá realiz
 
 O não cumprimento de um requisito, total ou parcialmente, impactará em sua avaliação.
 
-O arquivo `src/App.js` no repositório não deve ser alterado pois é a partir dele que os testes irá lhe avaliar.
+O arquivo `src/App.js` no repositório não deve ser removido pois é a partir dele que os testes irão lhe avaliar.
 
 ### Setup do backend
 
@@ -233,6 +233,28 @@ A página deve ser servida no caminho `/list`
     - O texto contendo a url
 
 ### 3 - Criar página de redirecionamento de links
+
+Nessa página deve ser possível visualizar um link de redirecionamento criado, contendo um aviso de redirecionamento e a url para qual está sendo redirecionado.
+
+A página deve ser servida no caminho `/redirect/:slug`
+
+#### Os seguintes pontos serão avaliados:
+
+- Na página deve ser possível buscar o link pelo slug. Exemplo:
+  - `/redirect/google` deve pesquisar no backend link com o slug `google`
+
+- Se o link não for encontrado deve existir na página uma tag `p` contendo:
+  - O atributo `data-testid=shortlink-not-found`
+  - O texto: `Slug não encontrado`
+
+- Se o link  existir na página uma tag `p` contendo:
+  - O atributo `data-testid=shortlink-redirect-info`
+  - O texto: `Você está sendo redirecionado para ${link}`, onde o link deverá ser o link de redirecionamento cadastrado
+
+- Se o link  existir na página uma tag `a` contendo:
+  - O atributo `href=${link}`, onde o link deverá ser o link de redirecionamento cadastrado
+  - O atributo `data-testid=shortlink-redirect-info`
+  - O texto: `Ir para o link`
 
 ### 4 - Criar funcionalidade de exclusão de links
 
