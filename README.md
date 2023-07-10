@@ -131,8 +131,6 @@ Em cada requisito você encontrará em detalhes o que seu projeto deverá realiz
 
 O não cumprimento de um requisito, total ou parcialmente, impactará em sua avaliação.
 
-O arquivo `src/App.js` no repositório não deve ser removido pois é a partir dele que os testes irão lhe avaliar.
-
 ### Setup do backend
 
 Nesse repositório existe uma pasta `backend` responsável por ser a api da aplicação. Para que o frontend consiga realizar as funcionalidades corretas é preciso inicializar a aplicação do backend.
@@ -161,13 +159,19 @@ fetch(`${import.meta.env.VITE_API_URL}/links`, options)
 
 ### Execução de testes unitários
 
-Nesse repositório estaremos usando o [vitest](https://vitest.dev/) para executar os testes, use o comando a seguir para executar o teste de um dos requisitos:
+Nesse repositório estaremos usando o [playwright](https://playwright.dev/) para executar os testes, use o comando a seguir para executar o teste de um dos requisitos:
 
 ```sh
-npm test -- tests/req01-createShortLink.spec.jsx
+npm test -- e2e/req01-createShortLink.spec.js
 ```
 
 :warning: Você pode utilizar `npm test` para rodar todos os testes, mas essa ação pode demorar durante o desenvolvimento, deixe que o avaliador determine como está o progresso de seu projeto
+
+Se quiser observar os passos que o teste irá realizar no navegador, você pode utilizar o comando:
+
+```sh
+npm run test:ui
+```
 
 ---
 
