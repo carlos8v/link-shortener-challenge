@@ -15,7 +15,7 @@ jobs:
 
       - name: Evaluator step
         id: evaluator
-        uses: carlos8v/vitest-evaluator-action@v2.4
+        uses: carlos8v/playwright-evaluator-action@v1.0
         with:
           test-coverage: 100
           token: ${{ secrets.GITHUB_TOKEN }}
