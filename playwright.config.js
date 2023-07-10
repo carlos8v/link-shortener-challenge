@@ -4,7 +4,7 @@ import { defineConfig, devices } from '@playwright/test'
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: false,
-  reporter: [['json', { outputFile: 'evaluator.json' }]],
+  reporter: [['json', { outputFile: 'evaluation.json' }]],
   use: {
     baseURL: 'http://127.0.0.1:3000',
     trace: 'on-first-retry',
