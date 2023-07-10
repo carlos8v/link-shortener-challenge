@@ -1,7 +1,7 @@
 import Fastify from 'fastify'
 import cors from '@fastify/cors'
 
-let defaultShortLinks = [
+const defaultShortLinks = [
   {
     id: 1,
     slug: "link-shortener-challenge",
@@ -10,7 +10,7 @@ let defaultShortLinks = [
 ]
 
 export function bootstrapServer(initialLinks = defaultShortLinks) {
-  let shortLinks = [...initialLinks]
+  const shortLinks = [...initialLinks]
   let lastId = shortLinks.length
 
   const fastify = Fastify({ logger: process.env.NODE_ENV !== 'test' })
@@ -66,7 +66,8 @@ export function bootstrapServer(initialLinks = defaultShortLinks) {
         return reply.status(400).send({ message: 'Encurtador não encontrado' })
       }
 
-      shortLinks = shortLinks.filter((link) => link.id !== shortenedLink.id)
+      const index = shortLinks.indexOf(shortenedLink)
+      shortLinks.splice(index, 1)
 
       return reply.status(204).send()
     }
